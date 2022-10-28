@@ -43,11 +43,7 @@ export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
     'September',
     'October',
     'November',
-    'December',
-    'January',
-    'February',
-    'March',
-    'April'
+    'December'
   ];
   datasets = [
     [{
@@ -136,8 +132,9 @@ export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
 
   setData() {
     for (let idx = 0; idx < 4; idx++) {
+      const mount = new Date().getMonth();
       this.data[idx] = {
-        labels: idx < 3 ? this.labels.slice(0, 7) : this.labels,
+        labels: this.labels.slice(0, mount + 1),
         datasets: this.datasets[idx]
       };
     }
@@ -166,6 +163,7 @@ export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
           options.elements.line.borderWidth = 2;
           options.elements.point.radius = 0;
           this.options.push(options);
+          console.log('las options',options)
           break;
         }
         case 3: {
@@ -190,7 +188,6 @@ export class WidgetsDropdownComponent implements OnInit, AfterContentInit {
     this.balanceService.getPriceBTC().subscribe( (res: any) => {
       console.log(res)
       this.priceBTC = res.data.data.prices[0].price
-      console.log( new Date(1665765660).getTime())
     })
   }
   getBlanceGeneral(){

@@ -31,18 +31,20 @@ export class AuthService {
       tokens: tokens,
       user: user
     };
-    console.log('loginToSave', loginToSave)
     localStorage.setItem('auth', JSON.stringify(loginToSave));
   }
 
   authentication(userData: any): Observable<any> {
-    console.log('pave',`${this.urlApi}/signin` )
     return this.http.post<any>(`${this.urlApi}/signin`, userData);
+  }
+  
+  register(userData: any): Observable<any> {
+    return this.http.post<any>(`${this.urlApi}/signup`, userData);
   }
 
   logout() {
     localStorage.removeItem('auth');
     localStorage.clear();
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
   }
 }

@@ -24,7 +24,6 @@ export class LoginComponent {
   ) {
     const token = this.authService.getToken();
     if (!!token) {
-      console.log('hola')
       this.router.navigate(['/dashboard']);
     }
 
@@ -49,7 +48,6 @@ export class LoginComponent {
     this.wait = true;
     this.authService.authentication(user).subscribe(
       (res) => {
-        console.log('pave')
         this.authService.loginSave(res.data.email, res.data.token);
         this.router.navigate(['/dashboard']);
         this.wait = false;

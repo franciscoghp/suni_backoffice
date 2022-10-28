@@ -21,6 +21,15 @@ export class UserService {
    else return this.http.get(this.urlApi)
   }
   
+  getUsersWithReferrals(){
+      return this.http.get(this.urlApi + `/with-references`)
+  }
+
+  getManyUsersById(ids: any){
+    console.log('ids' , ids)
+      return this.http.post(this.urlApi + `/many-by-id`, {ids})
+  }
+
   getUsersRefered(refered: boolean){
     console.log('refered', refered)
     if( !!refered ) {
